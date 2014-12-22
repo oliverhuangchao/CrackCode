@@ -2,15 +2,21 @@ file:=main
 object:=linklist.o node.o
 support:=linklist.cpp node.cpp 
 CFlag:=-c -g -std=c++0x
-run:$(file).o $(object)
-	clang++ -o run $(file).o $(object)
 
-$(file).o:$(file).cpp
-	clang++ $(CFlag) $(file).cpp
+run:main.o linklist.o node.o test.o
+	clang++ -o run main.o linklist.o node.o test.o
 
+main.o:main.cpp linklist.h node.h
+	clang++ $(CFlag) main.cpp
 
-$(object):$(support)
-	clang++ $(CFlag) $(support)
+linklist.o:linklist.h linklist.cpp node.h
+	clang++ $(CFlag) linklist.cpp
+
+node.o:node.h node.cpp
+	clang++ $(CFlag) node.cpp
+
+test.o:test.h test.cpp
+	clang++ $(CFlag) test.cpp
 
 clean:
 	rm -f *.o

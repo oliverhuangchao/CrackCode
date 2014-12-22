@@ -11,13 +11,13 @@ public:
 	Node<T>* head;
 	Node<T>* tail;
 
-	Linklist();
+	//Linklist();
 	//Linklist(const Linklist&);
 
-	Node<T>* getNode(int order);
-	void insertNode(T val);
-	void deleteNode(T val);
-	void deleteNode(int order);
+	Node<T>* getNode(int);
+	void insertNode(T);
+	void deleteNode(T,int);
+	void deleteNode(int);
 	void clear();
 	void sortNode();
 	void print();

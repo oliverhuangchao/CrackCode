@@ -1,6 +1,6 @@
 #include "linklist.h"
 #include <iostream>
-
+/*
 template<typename T>
 Linklist<T>::Linklist():
 	size(0),
@@ -8,7 +8,7 @@ Linklist<T>::Linklist():
 	head(nullptr),
 	tail(nullptr)
 {}
-
+*/
 template<typename T>
 void Linklist<T>::print(){
 	if(size == 0)
@@ -54,7 +54,8 @@ void Linklist<T>::deleteNode(int order){
 }
 
 template<typename T>
-void Linklist<T>::deleteNode(T value){
+void Linklist<T>::deleteNode(T value,int order){
+	order = 0;
 	Node<T>* tmpPtr = head;
 	int i;
 	for (i = 0;i < size; i++){
