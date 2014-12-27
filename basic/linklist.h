@@ -12,8 +12,9 @@ public:
 	Node<T>* tail;
 
 	Linklist();
-	
+	~Linklist();
 	Node<T>* getNode(int);
+
 	void insertNode(T);
 	int findNode(T);
 	void deleteNode(int);
@@ -32,6 +33,17 @@ Linklist<T>::Linklist():
 	head(nullptr),
 	tail(nullptr)
 {}
+
+template<typename T>
+Linklist<T>::~Linklist(){
+	Node<T>* tempPtr = head; 
+	for(int i = 0;i < size;i++){
+		Node<T>* tempPtr = head;
+		head = head->next;
+		delete tempPtr;
+	}
+}
+
 
 template<typename T>
 void Linklist<T>::print(){
