@@ -6,13 +6,18 @@
 using std::cout;using std::endl;
 
 int main(){
-	Linklist<int>* list = new Linklist<int>();
-	int x = 10;
-	int y = 5;
-	int z = 7;
-	list->insertNode(x);
-	list->insertNode(y);
-	list->insertNode(z);
+	Linklist<float>* list = new Linklist<float>();
+	float x[5]={5.6,1.2,3.5,4.6,2.5};
+	for(int i = 0; i<5;i++)
+		list->insertNode(x[i]);
+	list->print();
+	cout<<"begin to delete"<<endl;
+	list->deleteNode(1);
+	list->print();
+	cout<<"begin to search"<<endl;
+	cout<<list->findNode(2.5)<<endl;
+	cout<<"begin to clear"<<endl;
+	list->clear();
 	list->print();
 }
 

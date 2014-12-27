@@ -15,7 +15,7 @@ public:
 	
 	Node<T>* getNode(int);
 	void insertNode(T);
-	void deleteNode(T,int);
+	int findNode(T);
 	void deleteNode(int);
 	void clear();
 	void sortNode();
@@ -37,9 +37,12 @@ template<typename T>
 void Linklist<T>::print(){
 	if(size == 0)
 		std::cout<<"list is empty"<<std::endl;
-	for(int i = 0;i<size;i++){
-		std::cout<<head->member<<std::endl;
-		head = head -> next;
+	else{
+		Node<T>* tmpPtr = head;
+		for(int i = 0;i<size;i++){
+			std::cout<<"node "<<i<<'\t'<<tmpPtr->member<<std::endl;
+			tmpPtr = tmpPtr -> next;
+		}
 	}
 }
 
@@ -51,9 +54,12 @@ void Linklist<T>::insertNode(const T val){
 		head = newNode;
 	else{
 		Node<T>* tmpPtr = head;
-		for(int j=0;j<size;j++)
+		for(int j = 0;j<size - 1;j++)
 			tmpPtr = tmpPtr->next;
 		tmpPtr->next = newNode;
+		// for the insert we need to break the current linklist and insert a new one 
+		// assignment for tmpPtr-> next is the key part of the link list
+		//tmpPtr = newNode;
 	}
 	newNode->next = tail;
 	size++;
@@ -61,15 +67,19 @@ void Linklist<T>::insertNode(const T val){
 		capacity = capacity * 2;
 }
 
+/* delete node using order number
+order: should begin from 0, keep same setting in main file
+	
+*/
 template<typename T>
 void Linklist<T>::deleteNode(int order){
 	if(order > size || order <= 0) std::cout<<"out of list member"<<std::endl;
-	Node<T>* tmp = head;
-	for (int i = 0;i < order-1; i++){
-		tmp = tmp -> next;
+	Node<T>* tmpPtr = head;
+	for (int i = 0;i < order - 1; i++){
+		tmpPtr = tmpPtr -> next;
 	}
-	Node<T>* tryDeletePtr = tmp->next;
-	tmp->next = tmp->next->next;
+	Node<T>* tryDeletePtr = tmpPtr->next;
+	tmpPtr->next = tryDeletePtr->next;
 	size--;
 	if(size < capacity/4)
 		capacity = capacity / 2;
@@ -77,26 +87,25 @@ void Linklist<T>::deleteNode(int order){
 }
 
 template<typename T>
-void Linklist<T>::deleteNode(T value,int order){
-	order = 0;
+int Linklist<T>::findNode(T value){
+	if(size == 0){
+		std::cout<<"list is empty"<<std::endl;
+		return -1;
+	}
 	Node<T>* tmpPtr = head;
 	int i;
 	for (i = 0;i < size; i++){
-		if(tmpPtr->memeber == value){
-			Node<T>* deletePtr = tmpPtr;
-			tmpPtr->next  = tmpPtr->next->next;
-			delete deletePtr;
-			size--;
+		if(tmpPtr->member == value){
 			break;
 		}
 		tmpPtr = tmpPtr -> next;
 	}
-	if(i==size)
-		std::cout<<"delete it"<<std::endl;
-	else
-		std::cout<<"do not find it"<<std::endl;
-	if(size < capacity/4)
-		capacity = capacity / 2;
+	if(i==size){
+		std::cout<<"list do not have this value"<<std::endl;
+		return -1;
+	}
+	return i;
+
 }
 
 template<typename T>
