@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lsystem-specs>
+<dimensions>
+  <width>640</width>
+  <height>480</height>
+</dimensions>
+
+<startX>220</startX>
+<startY>340</startY>
+<levels>5</levels>
+<angle>25</angle>
+<facing>270</facing>
+<strokeLength>4</strokeLength>
+<strokeWidth>1</strokeWidth>
+<strokeColor>
+    <red>100</red>
+  <green>250</green>
+   <blue>20</blue>
+</strokeColor>
+
+<startSymbol>X</startSymbol>
+<grammar>
+<rule nonterminal="X">F-[[X]+X]+F[+FX]-X</rule>
+<rule nonterminal="F">FF</rule>
+</grammar>
+
+</lsystem-specs>

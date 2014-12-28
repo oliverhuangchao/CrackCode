@@ -32,16 +32,19 @@ Linklist<T>::Linklist():
 	capacity(10),
 	head(nullptr),
 	tail(nullptr)
-{}
+{
+	std::cout<<"default construct linklist"<<std::endl;
+}
 
 template<typename T>
 Linklist<T>::~Linklist(){
-	Node<T>* tempPtr = head; 
+	Node<T>* tempPtr = head;
 	for(int i = 0;i < size;i++){
 		Node<T>* tempPtr = head;
 		head = head->next;
 		delete tempPtr;
 	}
+	std::cout<<"distruct linklist"<<std::endl;
 }
 
 

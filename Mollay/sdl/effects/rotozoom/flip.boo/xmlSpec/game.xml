@@ -1,0 +1,59 @@
+<?xml version = "1.0"?>
+<GameData>
+
+<view>
+  <viewWidth>640</viewWidth>
+  <viewHeight>480</viewHeight>
+</view>
+
+<world>
+  <worldWidth>640</worldWidth>
+  <worldHeight>480</worldHeight>
+</world>
+
+<screenTitle>Basic Animation Framework</screenTitle>
+
+<font name="font">
+  <fontFile>font/dyslexic-bold.otf</fontFile>
+  <fontSize>14</fontSize>
+  <fontRed>255</fontRed>
+  <fontGreen>255</fontGreen>
+  <fontBlue>0</fontBlue>
+  <fontUnused>0</fontUnused>
+</font>
+<maxStringSize>50</maxStringSize>
+
+<back>
+  <backRed>49</backRed>
+  <backGreen>79</backGreen>
+  <backBlue>79</backBlue>
+</back>
+
+<boo>
+  <booFile>images/boohalf.png</booFile>
+  <booLoc booX="320" booY="140"/>
+  <booFrames>4</booFrames>
+  <booFrameInterval>10</booFrameInterval>
+  <booChunks>25</booChunks>
+  <booSrc booSrcX="0" booSrcY="0" />
+  <booLeftSrc booLeftSrcX="0" booLeftSrcY="42" />
+  <booWidth>50</booWidth>
+  <booHeight>42</booHeight>
+  <booSpeedX>200</booSpeedX>
+  <booSpeedY>15</booSpeedY>
+  <booCushion>50</booCushion>
+  <booTransparency>true</booTransparency>
+</boo>
+
+<redorb>
+  <redorbFile>images/redorb.png</redorbFile>
+  <redorbSrcX>0</redorbSrcX>
+  <redorbSrcY>0</redorbSrcY>
+  <redorbWidth>32</redorbWidth>
+  <redorbHeight>32</redorbHeight>
+  <redorbLoc redorbX="10" redorbY="10"/>
+  <redorbSpeed redorbSpeedX="250" redorbSpeedY="250"/>
+  <redorbTransparency>true</redorbTransparency>
+</redorb>
+
+</GameData>

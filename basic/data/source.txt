@@ -1,6 +1,7 @@
-hello
-world
-huang
-chao
-nice
-day
+3
+9
+5
+2
+1
+15
+7

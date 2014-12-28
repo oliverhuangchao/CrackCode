@@ -5,6 +5,10 @@ template<class T>
 class Node{
 public:
 	T member;
+
+	Node<T>* parent;
+	Node<T>* left;
+	Node<T>* right;
 	Node<T>* next;
 
 	Node();
@@ -16,7 +20,10 @@ public:
 template <class T>
 Node<T>::Node():
 	member(),
-	next(nullptr)
+	next(nullptr),
+	parent(nullptr),
+	left(nullptr),
+	right(nullptr)
 {}
 
 template <class T>
@@ -28,7 +35,10 @@ Node<T>::Node(const Node& x):
 template <class T>
 Node<T>::Node(const T val):
 	member(val),
-	next(nullptr)
+	next(nullptr),
+	parent(nullptr),
+	left(nullptr),
+	right(nullptr)
 {}
 
 

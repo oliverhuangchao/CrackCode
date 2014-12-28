@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lsystem-specs>
+<dimensions>
+  <width>640</width>
+  <height>480</height>
+</dimensions>
+
+<startX>220</startX>
+<startY>220</startY>
+<levels>2</levels>
+<angle>90</angle>
+<strokeLength>100</strokeLength>
+<strokeWidth>3</strokeWidth>
+<!-- facing of 0 means looking from left to right -->
+<facing>0</facing>
+<strokeColor>
+    <red>0</red>
+  <green>255</green>
+   <blue>0</blue>
+</strokeColor>
+
+<startSymbol>F</startSymbol>
+<grammar>
+<!-- - means turn left, + means turn right -->
+<rule nonterminal="F">F-F-F-F-</rule>
+</grammar>
+
+</lsystem-specs>

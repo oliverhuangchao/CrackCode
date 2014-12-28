@@ -1,0 +1,58 @@
+<?xml version = "1.0"?>
+
+<GameData>
+
+<view>
+  <viewWidth>640</viewWidth>
+  <viewHeight>480</viewHeight>
+</view>
+
+<world>
+  <worldWidth>1280</worldWidth>
+  <worldHeight>560</worldHeight>
+</world>
+
+<Font name="font">
+  <font>font/pirulen.ttf</font>
+  <fontSize>14</fontSize>
+</Font>
+<maxStringSize>50</maxStringSize>
+
+<background>images/checkmark.bmp</background>
+
+<cityback>
+  <citybackFile>images/cityback.bmp</citybackFile>
+  <citybackWidth>1280</citybackWidth>
+  <citybackHeight>560</citybackHeight>
+  <citybackSrcX>0</citybackSrcX>
+  <citybackSrcY>0</citybackSrcY>
+</cityback>
+
+<cityfront>
+  <cityfrontFile>images/cityfront.png</cityfrontFile>
+  <cityfrontWidth>1280</cityfrontWidth>
+  <cityfrontHeight>560</cityfrontHeight>
+  <cityfrontSrcX>0</cityfrontSrcX>
+  <cityfrontSrcY>0</cityfrontSrcY>
+</cityfront>
+
+<redorbs>
+  <redorbsMin>2</redorbsMin>
+  <redorbsMax>5</redorbsMax>
+  <redorbsSpeed redorbsXspeedMin="100" redorbsXspeedMax="300"/>
+  <redorbsSpeed redorbsYspeedMin="5" redorbsYspeedMax="10"/>
+</redorbs>
+
+<redorb>
+  <redorbFile>images/redball.bmp</redorbFile>
+  <redorbSrcX>0</redorbSrcX>
+  <redorbSrcY>0</redorbSrcY>
+  <redorbWidth>32</redorbWidth>
+  <redorbHeight>32</redorbHeight>
+  <redorbLoc redorbX="10" redorbY="500"/>
+  <redorbSpeed redorbXspeed="150" redorbYspeed="5"/>
+  <redorbMaxSpeed redorbMaxXspeed="500" redorbMaxYspeed="10"/>
+  <redorbTransparency>true</redorbTransparency>
+</redorb>
+
+</GameData>

@@ -1,0 +1,93 @@
+<?xml version = "1.0"?>
+<GameData>
+
+<view>
+  <width>640</width>
+  <height>480</height>
+</view>
+
+<world>
+  <width>960</width>
+  <height>960</height>
+</world>
+
+<screenTitle>Adding a Menu to the Game</screenTitle>
+<numberOfStars>10</numberOfStars>
+<numberOfOrbs>10</numberOfOrbs>
+<!-- 
+  0 is MidPoint
+  1 is Rectangular
+  2 is PerPixel
+ -->
+<collisionStrategy>2</collisionStrategy>
+<safeDistance>75</safeDistance>
+
+<back>
+  <file>images/checkerboard.bmp</file>
+  <red>112</red>
+  <green>128</green>
+  <blue>144</blue>
+  <factor>1</factor>
+  <srcX>0</srcX>
+  <srcY>0</srcY>
+  <width>960</width>
+  <height>960</height>
+  <transparency>false</transparency>
+</back>
+
+<font name="font">
+  <file>font/dyslexic-bold.otf</file>
+  <size>16</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>0</blue>
+  <unused>0</unused>
+</font>
+<maxStringSize>50</maxStringSize>
+
+<star>
+  <file>images/star.png</file>
+  <startLoc x="120" y="140"/>
+
+  <frames>4</frames>
+  <frameInterval>20</frameInterval>
+  <chunks>25</chunks>
+
+  <src x="0" y="0"/>
+  <width>32</width>
+  <height>32</height>
+  <speed x="-200" y="200"/>
+  <transparency>true</transparency>
+</star>
+
+<redstar>
+  <file>images/yellowstar32.png</file>
+  <srcX>0</srcX>
+  <srcY>0</srcY>
+  <width>32</width>
+  <height>32</height>
+  <startLoc x="320" y="240"/>
+  <speed x="-175" y="175"/>
+  <transparency>true</transparency>
+  <chunk>
+    <size>9</size>
+    <distance>200</distance>
+  </chunk>
+</redstar>
+
+<greenorb>
+  <file>images/greenball.bmp</file>
+  <srcX>0</srcX>
+  <srcY>0</srcY>
+  <width>32</width>
+  <height>32</height>
+  <startLoc x="320" y="240"/>
+  <speed x="175" y="175"/>
+  <transparency>true</transparency>
+  <chunk>
+    <size>9</size>
+    <distance>200</distance>
+  </chunk>
+</greenorb>
+
+</GameData>

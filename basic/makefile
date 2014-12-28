@@ -1,14 +1,20 @@
 file:=main
 CFlag:=-c -g -std=c++0x
 
-run:main.o linklist.o node.o getData.o
-	clang++ -o run main.o linklist.o node.o getData.o
+run:main.o linklist.o node.o getData.o bst.o
+	clang++ -o run main.o linklist.o node.o getData.o bst.o
 
-main.o:main.cpp linklist.h node.h
+main.o:main.cpp node.h heap.h bst.h linklist.h
 	clang++ $(CFlag) main.cpp
 
 linklist.o:linklist.h linklist.cpp node.h
 	clang++ $(CFlag) linklist.cpp
+
+#heap.o:heap.h heap.cpp node.h
+#	clang++ $(CFlag) heap.cpp
+
+bst.o:bst.h bst.cpp node.h
+	clang++ $(CFlag) bst.cpp
 
 node.o:node.h node.cpp
 	clang++ $(CFlag) node.cpp

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lsystem-specs>
+<dimensions>
+  <width>640</width>
+  <height>480</height>
+</dimensions>
+
+<startX>120</startX>
+<startY>140</startY>
+<levels>6</levels>
+<angle>60</angle>
+<facing>0</facing>
+<strokeLength>5</strokeLength>
+<strokeWidth>2</strokeWidth>
+<strokeColor>
+    <red>0</red>
+  <green>0</green>
+   <blue>255</blue>
+</strokeColor>
+
+<startSymbol>A</startSymbol>
+<grammar>
+<rule nonterminal="A">B-A-B</rule>
+<rule nonterminal="B">A+B+A</rule>
+</grammar>
+
+</lsystem-specs>

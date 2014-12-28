@@ -1,0 +1,152 @@
+<?xml version = "1.0"?>
+<GameData>
+
+<view>
+  <width>640</width>
+  <height>480</height>
+</view>
+
+<world>
+  <width>1280</width>
+  <height>960</height>
+</world>
+
+<screenTitle>Collision Detection Strategies</screenTitle>
+<coinCount>75</coinCount>
+
+<back>
+  <file>images/checkerboard.bmp</file>
+  <factor>1</factor>
+  <width>1280</width>
+  <height>960</height>
+  <transparency>false</transparency>
+</back>
+
+<font name="font">
+  <file>font/dyslexic-bold.otf</file>
+  <size>14</size>
+  <red>139</red>
+  <green>0</green>
+  <blue>0</blue>
+  <unused>0</unused>
+</font>
+<maxStringSize>50</maxStringSize>
+
+<redstar>
+  <file>images/redstar20.png</file>
+  <width>20</width>
+  <height>19</height>
+  <src x="0" y="0"/>
+  <startLoc x="820" y="680"/>
+  <speed x="150" y="150"/>
+  <transparency>true</transparency>
+</redstar>
+
+<!-- The bat was drawn by Jordan Gestring -->
+<bat>
+  <file>images/batsLeft.png</file>
+  <startLoc x="900" y="450"/>
+
+  <frames>4</frames>
+  <frameInterval>400</frameInterval>
+  <batDistance>120</batDistance>
+  <width>100</width>
+  <height>100</height>
+  <src x="0" y="0"/>
+  <speed x="0" y="0"/>
+  <scale min="0.4" max="1.5"/>
+  <transparency>true</transparency>
+</bat>
+
+<!-- The bat was drawn by Jordan Gestring -->
+<rotatebat>
+  <file>images/batsLeft.png</file>
+  <width>100</width>
+  <height>100</height>
+  <frames>4</frames>
+  <frameInterval>400</frameInterval>
+  <src x="0" y="0"/>
+  <startLoc x="900" y="600"/>
+  <speed x="0" y="0"/>
+  <minSpeed x="0" y="0"/>
+  <cushion>5</cushion>
+  <scale min="0.4" max="1.5"/>
+  <transparency>true</transparency>
+</rotatebat>
+
+<greenorb>
+  <file>images/greenball.bmp</file>
+  <width>32</width>
+  <height>32</height>
+  <src x="0" y="0"/>
+  <startLoc x="760" y="550"/>
+  <speed x="0" y="0"/>
+  <transparency>true</transparency>
+</greenorb>
+
+<!-- The coin was drawn by Nathan Welch -->
+<coin>
+  <file>images/coin.png</file>
+  <width>50</width>
+  <height>55</height>
+  <src x="0" y="0"/>
+  <startLoc x="640" y="450"/>
+  <frames>5</frames>
+  <frameInterval>100</frameInterval>
+  <speed x="0" y="0"/>
+  <cushion>50</cushion>
+  <scale min="0.5" max="2.0"/>
+  <transparency>false</transparency>
+</coin>
+
+<box>
+  <file>images/box.bmp</file>
+  <width>150</width>
+  <height>150</height>
+  <src x="0" y="0"/>
+  <startLoc x="300" y="165"/>
+  <speed x="0" y="0"/>
+  <transparency>true</transparency>
+</box>
+
+<box2>
+  <file>images/box.bmp</file>
+  <width>150</width>
+  <height>150</height>
+  <src x="0" y="0"/>
+  <startLoc x="1100" y="740"/>
+  <speed x="0" y="0"/>
+  <transparency>true</transparency>
+</box2>
+
+<pter>
+  <file>images/pter.bmp</file>
+  <src x="0" y="0"/>
+  <width>120</width>
+  <height>117</height>
+  <startLoc x="550" y="600"/>
+  <speed x="0" y="0"/>
+  <transparency>true</transparency>
+</pter>
+
+<spiral>
+  <file>images/spiral.png</file>
+  <src x="0" y="0"/>
+  <width>200</width>
+  <height>180</height>
+  <startLoc x="760" y="710"/>
+  <speed x="0" y="0"/>
+  <transparency>false</transparency>
+</spiral>
+
+<redorb>
+  <file>images/redorb.png</file>
+  <src x="0" y="0"/>
+  <width>32</width>
+  <height>32</height>
+  <startLoc x="960" y="510"/>
+  <speed x="0" y="0"/>
+  <transparency>true</transparency>
+</redorb>
+
+</GameData>
