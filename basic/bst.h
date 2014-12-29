@@ -20,14 +20,19 @@ public:
 	void deleteNode(int);
 	void clear();
 	void inorderTraversal(Node<T>*);
-	Node<T>* findMin();
-	Node<T>* findMax();
+	Node<T>* findMin(Node<T>*);
+	Node<T>* findMax(Node<T>*);
+	Node<T>* predecessor(T);
+	Node<T>* successor(T);
 };
 
 //overload << operator
 template<typename T>
-std::ostream& operator<<(std::ostream out, const Node<T>* node){
-	out<<node->member<<'\n';
+std::ostream& operator<<(std::ostream& out, const Node<T>* node){
+	if(node == nullptr)
+		return out<<"null"<<'\n';
+	else
+		return	out<<node->member<<'\n';
 }
 
 
@@ -52,27 +57,23 @@ BST<T>::~BST(){
 template<typename T>
 void BST<T>::inorderTraversal(Node<T>* node){
 	if(node == nullptr){
-		//std::cout<<"list is empty"<<std::endl;
+//		std::cout<<"inorderTraversl: list is empty"<<std::endl;
 		return;
 	}
 	else{
-		//std::cout<<node->member<<std::endl;
-		//Node<T>* tmpPtr = root;
 		inorderTraversal(node->left);
 		std::cout<<node->member<<std::endl;;
 		inorderTraversal(node->right);
 	}
-//	std::cout<<std::endl;
 }
 
 //------ find the min of the bst ------
 template<typename T>
-Node<T>* BST<T>::findMin(){
-	Node<T>* tmpPtr = root;
+Node<T>* BST<T>::findMin(Node<T>* node){
+	Node<T>* tmpPtr = node;
 	while(tmpPtr->left != nullptr){
 		tmpPtr = tmpPtr->left;
 	}
-	std::cout<<tmpPtr->member<<std::endl;
 	return tmpPtr;
 
 }
@@ -81,12 +82,11 @@ Node<T>* BST<T>::findMin(){
 
 //------ find the max of the bst ------
 template<typename T>
-Node<T>* BST<T>::findMax(){
-	Node<T>* tmpPtr = root;
+Node<T>* BST<T>::findMax(Node<T>* node){
+	Node<T>* tmpPtr = node;
 	while(tmpPtr->right != nullptr){
 		tmpPtr = tmpPtr->right;
 	}
-	std::cout<<tmpPtr->member<<std::endl;
 	return tmpPtr;
 }
 
@@ -103,6 +103,7 @@ void BST<T>::insertNode(const T val){
 			if(newNode->member > tmpPtr->member){
 				if(tmpPtr->right == nullptr){
 					tmpPtr->right = newNode;
+					newNode->parent = tmpPtr;
 					break;
 				}
 				else
@@ -111,6 +112,7 @@ void BST<T>::insertNode(const T val){
 			else{
 				if(tmpPtr->left == nullptr){
 					tmpPtr->left = newNode;
+					newNode->parent = tmpPtr;
 					break;
 				}
 				else{
@@ -126,12 +128,17 @@ void BST<T>::insertNode(const T val){
 order: should begin from 0, keep same setting in main file
 */
 template<typename T>
-void BST<T>::deleteNode(int order){
-	if(order > size || order <= 0) std::cout<<"out of list member"<<std::endl;
-	Node<T>* tmpPtr = root;
-	for (int i = 0;i < order - 1; i++){
-		tmpPtr = tmpPtr -> next;
+Node<T>* BST<T>::deleteNode(T value){
+	if(size == 0){
+		std::cout<<"bst is empty"<<std::endl;
+		return nullptr;
 	}
+	Node<T>* node = findNode(value);
+	if(node == nullptr){
+		std::cout<<"this value does not exist"<<std::endl;
+		return nullptr;
+	}
+
 	Node<T>* tryDeletePtr = tmpPtr->next;
 	tmpPtr->next = tryDeletePtr->next;
 	size--;
@@ -141,11 +148,11 @@ void BST<T>::deleteNode(int order){
 }
 
 
-//------ search a node in the iteration way ------
+//------ search a node in iteration way ------
 template<typename T>
 Node<T>* BST<T>::findNode(T value){
 	if(size == 0){
-		std::cout<<"list is empty"<<std::endl;
+		std::cout<<"findNode: list is empty"<<std::endl;
 		return nullptr;
 	}
 	Node<T>* tmpPtr = root;
@@ -167,19 +174,21 @@ Node<T>* BST<T>::findNode(T value){
 	}
 }
 
-// ------ search recursive way ------
+// ------ search a node in recursive way ------
 template<typename T>
 Node<T>* BST<T>::findNode(T value, Node<T>* node){
+	Node<T>* tmpPtr;
 	if(node->member == value)
 		return node;
-	if(node->left ==  nullptr || node->right == nullptr)
+	if(node->left ==  nullptr && node->right == nullptr)
 		return nullptr;
 	if(node-> member > value){
-		findNode(value,node->left);
+	  	tmpPtr = findNode(value,node->left);
 	}
 	else{
-		findNode(value,node->right);
+		tmpPtr = findNode(value,node->right);
 	}
+	return tmpPtr;
 }
 
 // ------ clear all the contents in the list ----
@@ -196,6 +205,52 @@ void BST<T>::clear(){
 	}
 	size = 0;
 	capacity = 1;
+	}
+}
+
+//------ find the predecessor in ths list ------
+template<typename T>
+Node<T>* BST<T>::predecessor(T value){
+	Node<T>* tmpPtr= findNode(value);
+	if(tmpPtr->left== nullptr){
+		//Node<T>* tmpPtr = node->parent;
+		while(1){
+			if(tmpPtr->parent->right == tmpPtr)
+				return tmpPtr->parent;
+			else
+				tmpPtr = tmpPtr->parent;
+			if(tmpPtr->parent == nullptr){
+				//std::cout<<"null"<<std::endl;
+				return nullptr;
+				break;
+			}
+		}
+	}
+	else{
+		return findMax(tmpPtr->left);
+	}
+}
+
+//------ find the successor in ths list ------
+template<typename T>
+Node<T>* BST<T>::successor(T value){
+	Node<T>* tmpPtr= findNode(value);
+	if(tmpPtr->right == nullptr){
+		//Node<T>* tmpPtr = node->parent;
+		while(1){
+			if(tmpPtr->parent->left == tmpPtr)
+				return tmpPtr->parent;
+			else
+				tmpPtr = tmpPtr->parent;
+			if(tmpPtr->parent == nullptr){
+				//std::cout<<"null"<<std::endl;
+				return nullptr;
+				break;
+			}
+		}
+	}
+	else{
+		return findMin(tmpPtr->right);
 	}
 }
 #endif
