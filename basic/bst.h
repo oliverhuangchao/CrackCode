@@ -17,7 +17,7 @@ public:
 	Node<T>* findNode(T);
 	Node<T>* findNode(T,Node<T>*);
 
-	Node<T>* deleteNode(T);
+	bool deleteNode(T);
 	void mergeTree(Node<T>*, Node<T>*);
 	void clear();
 	void inorderTraversal(Node<T>*);
@@ -129,15 +129,15 @@ void BST<T>::insertNode(const T val){
 order: should begin from 0, keep same setting in main file
 */
 template<typename T>
-Node<T>* BST<T>::deleteNode(T value){
+bool BST<T>::deleteNode(T value){
 	if(size == 0){
 		std::cout<<"bst is empty"<<std::endl;
-		return nullptr;
+		return false;
 	}
 	Node<T>* node = findNode(value);
 	if(node == nullptr){
 		std::cout<<"this value does not exist"<<std::endl;
-		return nullptr;
+		return false;
 	}
 	//case I: node has no child
 	if(node->left == nullptr && node->right == nullptr){
@@ -145,6 +145,9 @@ Node<T>* BST<T>::deleteNode(T value){
 			node->parent->left = nullptr;
 		else
 			node->parent->right= nullptr;
+		delete node;
+		size--;
+		return true;
 	}
 	//case II: node has one child
 	if(node->left == nullptr xor node->right == nullptr){
@@ -164,22 +167,34 @@ Node<T>* BST<T>::deleteNode(T value){
 				node->left->parent = node->parent;
 			}
 		}
+		delete node;
+		size--;
+		return true;
 	}
 	//case III: node has two children
 	if(node->left != nullptr && node->right != nullptr){
-		Node<T>* suc = successor(node->member);
-		if(node->member > node->parent->member){
-			node->parent->right = suc;
-			suc->parent = node->parent;
-		}
-		else{
-			node->parent->left = suc;
-			suc->parent = node->parent;
-		}
-	}
+		Node<T>* tmp = successor(node->member);
+		Node<T>* suc= new Node<T>(tmp->member);
+		deleteNode(tmp->member);
 
-	return node;
-	size--;
+		if(node->left != nullptr){
+			node->left->parent = suc;
+			suc->left = node->left;
+
+		}
+
+		if(node->right!= nullptr){
+			node->right->parent = suc;
+			suc->right = node->right;
+		}
+
+		suc->parent = node->parent;
+		if(node == root) root = suc;
+
+		delete node;
+		size--;
+		return true;
+	}
 }
 
 

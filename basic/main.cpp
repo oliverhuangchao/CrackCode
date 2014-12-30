@@ -38,7 +38,9 @@ int main(){
 
 //------ delete node ------
 	std::cout<<"begin to delete a node"<<std::endl;
-	list->deleteNode(17);
+	for(int i = 0; i<number;i++)
+		list->deleteNode(list->root->member);
+
 	list->inorderTraversal(list->root);
 /*
 	cout<<"begin to delete"<<endl;
