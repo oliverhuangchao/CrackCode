@@ -17,11 +17,12 @@ public:
 	Node<T>* findNode(T);
 	Node<T>* findNode(T,Node<T>*);
 
-	void deleteNode(int);
+	Node<T>* deleteNode(T);
+	void mergeTree(Node<T>*, Node<T>*);
 	void clear();
 	void inorderTraversal(Node<T>*);
-	Node<T>* findMin(Node<T>*);
-	Node<T>* findMax(Node<T>*);
+	Node<T>* findMin(Node<T>*);// input is the starting root node
+	Node<T>* findMax(Node<T>*);// input is the starting root node
 	Node<T>* predecessor(T);
 	Node<T>* successor(T);
 };
@@ -138,13 +139,47 @@ Node<T>* BST<T>::deleteNode(T value){
 		std::cout<<"this value does not exist"<<std::endl;
 		return nullptr;
 	}
+	//case I: node has no child
+	if(node->left == nullptr && node->right == nullptr){
+		if(node->member < node->parent->member)
+			node->parent->left = nullptr;
+		else
+			node->parent->right= nullptr;
+	}
+	//case II: node has one child
+	if(node->left == nullptr xor node->right == nullptr){
+		if(node->member > node->parent->member){
+			if(node->right != nullptr)
+				node->parent->right = node->right;
+			else
+				node->parent->right = node->left;
+		}
+		else{
+			if(node->right != nullptr){
+				node->parent->left= node->right;
+				node->right->parent = node->parent;
+			}
+			else{
+				node->parent->left = node->left;
+				node->left->parent = node->parent;
+			}
+		}
+	}
+	//case III: node has two children
+	if(node->left != nullptr && node->right != nullptr){
+		Node<T>* suc = successor(node->member);
+		if(node->member > node->parent->member){
+			node->parent->right = suc;
+			suc->parent = node->parent;
+		}
+		else{
+			node->parent->left = suc;
+			suc->parent = node->parent;
+		}
+	}
 
-	Node<T>* tryDeletePtr = tmpPtr->next;
-	tmpPtr->next = tryDeletePtr->next;
+	return node;
 	size--;
-	if(size < capacity/4)
-		capacity = capacity / 2;
-	delete tryDeletePtr;
 }
 
 
