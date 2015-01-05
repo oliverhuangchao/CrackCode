@@ -25,6 +25,7 @@ public:
 	Node<T>* findMax(Node<T>*);// input is the starting root node
 	Node<T>* predecessor(T);
 	Node<T>* successor(T);
+	int getHeight(Node<T>*);//get the height of the tree recursively
 };
 
 //overload << operator
@@ -36,6 +37,18 @@ std::ostream& operator<<(std::ostream& out, const Node<T>* node){
 		return	out<<node->member<<'\n';
 }
 
+//get the height of the tree recursively
+template<typename T>
+int BST<T>::getHeight(Node<T>* node){
+	if(node != nullptr){
+		int l = getHeight(node->left);
+		int r = getHeight(node->right);
+		return (l>r?l:r)+1;
+	}
+	else{
+		return 0;
+	}
+}
 
 //------ bst construction function ------
 template<typename T>
