@@ -1,6 +1,12 @@
 #include<iostream>
 
 int main(){
-	int x[]={2,3,4,5,6};
-	std::cout<<sizeof(x)<<std::endl;
+	int* a = new int[10];
+	int* b = new int[10];
+	int* c = new int[10];
+	*a = 1;
+	*c = 222;
+	b = a;
+	a = c;
+	std::cout<<*(a)<<'\t'<<*b<<'\t'<<*c<<std::endl;
 }

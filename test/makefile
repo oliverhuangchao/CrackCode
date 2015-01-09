@@ -1,4 +1,4 @@
-file=sort
+file=main
 run:${file}.o
 	clang++ -o run ${file}.o
 ${file}.o:${file}.cpp
