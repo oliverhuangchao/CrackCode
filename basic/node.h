@@ -1,6 +1,9 @@
 #ifndef NODE__H
 #define NODE__H
 #include <iostream>
+
+enum Status{white, grey, black};
+
 template<class T>
 class Node{
 public:
@@ -10,6 +13,8 @@ public:
 	Node<T>* left;
 	Node<T>* right;
 	Node<T>* next;
+
+	Status status;
 
 	Node();
 	Node(const Node& x);
@@ -23,7 +28,8 @@ Node<T>::Node():
 	next(nullptr),
 	parent(nullptr),
 	left(nullptr),
-	right(nullptr)
+	right(nullptr),
+	status(white)
 {}
 
 template <class T>
