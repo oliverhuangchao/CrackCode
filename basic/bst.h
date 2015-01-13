@@ -2,6 +2,11 @@
 #define BST__H
 
 #include "node.h"
+#include <queue>
+#include <list>
+#include <stack>
+#include <vector>
+
 // recursively to visit all the node
 template<typename T>
 void DFS_visitNode(Node<T>*);
@@ -16,12 +21,12 @@ public:
 	int capacity;
 	int branch;// how many branches are there for this tree
 	Node<T>* root;
-	Node<T>** sonNode;
+	std::vector<Node<T>*> sonNode;
 
 	BST();
 	~BST();
 
-	void insertNode(T);
+	void insertNode(const T);
 	Node<T>* findNode(T);
 	Node<T>* findNode(T,Node<T>*);
 
@@ -38,7 +43,42 @@ public:
 	void DFS(Node<T>*);// depth first search
 	void BFS(Node<T>*);// breath first search
 	bool isBlanced(Node<T>*);//whether this tree is blanced or not
+	void createBinaryTreeWithArray(T*, int);
+	Node<T>* makeBSTwithSorttedArray(T*, int, int);
+	std::list<Node<T>*> getRoute(Node<T>* node);//get a list of Route for a given node
+	void printTree();
 };
+//------ get a list of route for a given node ------
+// not recursive way to achieve it
+template<typename T>
+std::list<Node<T>* > BST<T>::getRoute(Node<T>* node){
+	std::list<Node<T>*> rlist;
+	Node<T>* cNode = root;
+	while(1){
+		Node<T>* tmpNode = cNode;
+		rlist.push_back(tmpNode);
+		if(cNode->member == node->member)
+			break;
+		else{
+			if(cNode->member > cNode->member){
+				if(cNode->left != nullptr)
+					cNode = cNode->left;
+				else{
+					std::cout<<"cannot find this node"<<std::endl;
+					break;
+				}
+			}
+			else
+				if(cNode->right != nullptr)
+					cNode = cNode->right;
+				else{
+					std::cout<<"cannot find this node"<<std::endl;
+					break;
+				}
+		}
+	}
+	return rlist;
+}
 
 // still something wrong with it
 //------ whether this tree is blanced or not ------
@@ -62,16 +102,33 @@ bool BST<T>::isBlanced(Node<T>* node){
 		return true;
 	if(abs( getHeight(node->left) - getHeight(node->right)) <=1){
 		if(isBlanced(node->left) && isBlanced(node->right))
-				retrun true;
+				return true;
 	}
 	else{
 		return false;
 	}
 }
 
+// BFS function written in non-recursive way
+template<typename T>
+void BST<T>::BFS(Node<T>* start){
+	std::queue<Node<T>* > q;
+	Node<T>* tmpNode = nullptr;
+	q.push(start);
+	while(!q.empty()){
+		tmpNode = q.front();
+		q.pop();
+		std::cout<<tmpNode->member<<std::endl;
+		if(tmpNode->left != nullptr) q.push(tmpNode->left);
+		if(tmpNode->right!= nullptr) q.push(tmpNode->right);
+	}
+}
 
 
-// include two ways to achieve dfs function
+
+
+// include two ways to achieve DFS function
+// below is the recursive way
 template<typename T>
 void BST<T>::DFS(Node<T>* start){
 	inorderTraversal(root);
@@ -136,7 +193,7 @@ BST<T>::BST():
 	capacity(10),
 	branch(2),//default is a binary tree
 	root(nullptr),
-	sonNode(new Node<T>* [branch])
+	sonNode()
 {
 	std::cout<<"default construct BST"<<std::endl;
 }
@@ -146,6 +203,8 @@ BST<T>::~BST(){
 	clear();
 	std::cout<<"distruct BST"<<std::endl;
 }
+
+
 
 //------ inorder traversal all the nodes in the list ------
 // written in recursive method
@@ -157,7 +216,7 @@ void BST<T>::inorderTraversal(Node<T>* node){
 	}
 	else{
 		inorderTraversal(node->left);
-		//std::cout<<node->member<<std::endl;
+		std::cout<<node->member<<std::endl;
 		node->status = white;
 		inorderTraversal(node->right);
 	}
@@ -224,10 +283,11 @@ void BST<T>::insertNode(const T val){
 template<typename T>
 void BST<T>::createBinaryTreeWithArray(T* inputArray,int size){
 	int count = 0;
-	Node<T>* cNode = root;
-	std::queue<Node<T>> q;
+	Node<T>* cNode = new Node<T>(inputArray[0]);
+	root = cNode;
+	std::queue< Node<T>* > q;
 	q.push(cNode);
-	for(int i=0;i<size;i++){
+	for(int i=1;i<size;i++){
 		Node<T>* z = new Node<T>(inputArray[i]);
 		if(cNode->member == 0 ){// or equal to nullptr
 			cNode = z;
@@ -255,15 +315,15 @@ void BST<T>::createBinaryTreeWithArray(T* inputArray,int size){
 // this function is a spcification for the upper function
 // it is a recursive method
 template<typename T>
-Node<T>* makeBSTwithSorttedArray(T* array,start,end){
+Node<T>* BST<T>::makeBSTwithSorttedArray(T* array,int start,int end){
 	int mid = (end - start)/2 + start;
 	if(end - start <= 1) return nullptr;
 	T value = array[mid];
 	Node<T>* z = new Node<T>(value);
 	if(mid ==0) return z;
 	else{
-			makeBSTwithSorttedArray(array,start,mid);
-			makeBSTwithSorttedArray(array,mid,end);
+			z->left = makeBSTwithSorttedArray(array,start,mid);
+			z->right = makeBSTwithSorttedArray(array,mid,end);
 	}
 }
 
@@ -444,5 +504,12 @@ Node<T>* BST<T>::successor(T value){
 	else{
 		return findMin(tmpPtr->right);
 	}
+}
+
+// print this tree in a tree order
+template<typename T>
+void BST<T>::printTree(){
+	// something like a BFS traversal
+	
 }
 #endif

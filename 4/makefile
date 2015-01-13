@@ -1,6 +1,6 @@
 cc = clang++
-cflag = -c -g
-file = 6
+cflag = -c -g -std=c++0x
+file = code
 
 run:main.o ${file}.o
 	${cc} -o run main.o ${file}.o
