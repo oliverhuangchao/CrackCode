@@ -1,12 +1,10 @@
 #include<iostream>
-
+#include<cmath>
+#include<string>
 int main(){
-	int* a = new int[10];
-	int* b = new int[10];
-	int* c = new int[10];
-	*a = 1;
-	*c = 222;
-	b = a;
-	a = c;
-	std::cout<<*(a)<<'\t'<<*b<<'\t'<<*c<<std::endl;
+	std::string x="hello";
+	std::string::iterator p = x.begin();
+	x = x.insert(2,1,'h');
+	std::cout<<x<<std::endl;
 }
+
