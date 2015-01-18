@@ -65,4 +65,5 @@ std::vector<std::string> getPermutation(const std::string& x,int n){
 //------ 8.5 ------//
 //print all combination of parentheses
 
-std::vector<std:string> getPre
+std::vector<std:string> getParentheses(){
+}
