@@ -64,7 +64,7 @@ int findSortedPos(int* x,int size,int value){
 	int start = 0;
 	int end = size-1;
 	int mid = (start+end)/2;
-	while(end - start > 0){
+	while(end - start > 1){
 		if(x[mid] == value)
 			return mid;
 		if(x[mid]<value){
